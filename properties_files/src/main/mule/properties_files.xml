@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+<!--  	<flow name="properties_files_basic" doc:id="f480d988-dd35-484e-b73d-92655fb8da8d" >
+		<http:listener doc:name="HTTP GET" doc:id="7d794370-1e09-4c8f-b0f5-b9598071d704" config-ref="HTTP_Listener_config" path="${http.path}"/>
+		<logger level="INFO" doc:name="Logger" doc:id="9a47178e-80f0-43ca-b65a-ff2449032127" message="${message}"/>
+		<set-payload value="${message}" doc:name="Set Payload" doc:id="c08030e7-df9f-42de-a282-115eb382c474" />
+	</flow>-->
+	<flow name="properties_files_dynamics" doc:id="e489b0f1-cf01-4b9a-93c5-8999a2be9a3a" >
+		<http:listener doc:name="HTTP GET" doc:id="d66c406f-0cbe-4bd1-9c1f-4597ae5fa9ac" config-ref="HTTP_Listener_config" path="${http.path}"/>
+		<logger level="INFO" doc:name="Logger" doc:id="4b3af9cf-8dd1-485f-b4f4-88d6c48a778d" message='#[%dw 2.0&#10;&#10;output application/json&#10;---&#10;{&#10;	"message": Mule::p("myMessage")&#10;}]'/>
+		<set-payload doc:name="Set Payload" doc:id="4913819e-0dd3-426f-bd8b-2e6223ecc0ac" value='#[%dw 2.0&#10;&#10;output application/json&#10;---&#10;{&#10;	"message": Mule::p("myMessage")&#10;}]'/>
+	</flow>
+</mule>

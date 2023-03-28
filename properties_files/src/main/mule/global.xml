@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="255e1c35-f397-4911-a5f0-ce198b315109" >
+		<http:listener-connection host="${http.host}" port="${http.port}" />
+	</http:listener-config>
+	<configuration-properties doc:name="Configuration properties" doc:id="38ee1cda-d90e-4236-a805-015eacc6f1ea" file="common.yaml" doc:description="common config file  to reference config files&#10;"/>
+	<configuration-properties doc:name="Configuration properties" doc:id="0e4af1e0-fb6f-47b8-b2c4-35a1e446d89c" doc:description="dynamic config property file" file="config-${environment}.yaml" />
+	<global-property doc:name="Global Property" doc:id="fcf54158-cf06-4789-8f0a-76525f279cea" name="environment" value="prd" />
+</mule>
